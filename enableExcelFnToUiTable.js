@@ -59,7 +59,6 @@ function enableExcelFnToUiTable() {
                 }
 
                 // key arrow down / key enter
-                // if (e.keyCode === 40 || e.keyCode === 13) {
                 if (e.key === "ArrowDown" || e.key === "Enter") {
                   newRowIndex = currentRowIndex + 1;
                   newCellIndex = currentCellIndex;
