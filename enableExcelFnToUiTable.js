@@ -29,7 +29,6 @@ function enableExcelFnToUiTable() {
             tableExcel.bindRows("/");
             modeltableExcel.setData(arrayTableData);
 
-            // get number of fixed columns
             const tableExcelObj = document.getElementById(tableExcel.sId);
 
             if (tableExcelObj) {
