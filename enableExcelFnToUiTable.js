@@ -107,7 +107,7 @@ function enableExcelFnToUiTable() {
         }
       };
 
-      // onmousedown event for excel like cells selection
+      // onmouseup event for excel like cells selection
       document.getElementById(tableExcel.sId).onmouseup = function (e) {
         // check if the element is the input
         // when the mouse is dragged over the cells
