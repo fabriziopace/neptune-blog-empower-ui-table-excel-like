@@ -130,16 +130,20 @@ function enableExcelFnToUiTable() {
 
         // onmousedown event for excel-like cells selection
         tableExcelObj.onmousedown = function (e) {
+          if (e.button !== 0) {
+            // if the mouse button pressed is not the left exit
+            return;
+          }
+
           // called when the drag start
           const currentTarget = e.target;
           startInputSel = null;
           isMouseUp = false;
 
-          // close popover
-          popoverBulkEdit.close();
-
-          // reset old selections
-          $(".customFocusExcelStyle").removeClass("customFocusExcelStyle");
+          // reset old selections if the ctrl button is not pressed
+          if (!e.ctrlKey) {
+            $(".customFocusExcelStyle").removeClass("customFocusExcelStyle");
+          }
 
           // check if the element is a input
           if (currentTarget) {
@@ -153,6 +157,21 @@ function enableExcelFnToUiTable() {
                   let newInputToFocusHtml = $(`#${newTableCellToFocus.id}`);
                   if (newInputToFocusHtml) {
                     newInputToFocusHtml.addClass("customFocusExcelStyle");
+
+                    // if ctrl key is not pressed
+                    // and we have more than 1 cell selected
+                    // show the popover for bulk edit
+                    let numInputFocused = document.getElementsByClassName("customFocusExcelStyle");
+                    let htmlInputFocused = startInputSel.closest(".sapMInputBase");
+                    if (htmlInputFocused) {
+                      htmlInputFocused.classList.add("customFocusExcelStyle");
+                    }
+                    if (e.ctrlKey && numInputFocused.length > 1) {
+                      setTimeout(function () {
+                        let lastInputFocused = sap.ui.getCore().byId(htmlInputFocused.id);
+                        popoverBulkEdit.openBy(lastInputFocused);
+                      }, 100);
+                    }
                   }
                 }
               }
