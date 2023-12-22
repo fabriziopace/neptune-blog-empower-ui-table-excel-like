@@ -158,7 +158,7 @@ function enableExcelFnToUiTable() {
                   if (newInputToFocusHtml) {
                     newInputToFocusHtml.addClass("customFocusExcelStyle");
 
-                    // if ctrl key is not pressed
+                    // if ctrl key is pressed
                     // and we have more than 1 cell selected
                     // show the popover for bulk edit
                     let numInputFocused = document.getElementsByClassName("customFocusExcelStyle");
