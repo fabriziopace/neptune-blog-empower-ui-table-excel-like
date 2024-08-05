@@ -120,6 +120,13 @@ function enableExcelFnToUiTable() {
                       }
                     }
                   }
+
+                  // prevent the combobox value change when the user navigate with the arrowup / arrowdown key buttons
+                  if (currentTarget.classList.contains("sapMComboBoxInner")) {
+                    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+                      e.stopPropagation();
+                    }
+                  }
                 } else {
                   return;
                 }
